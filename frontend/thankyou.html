@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thankyou-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, #2b2d42, #4a4e69);
+            animation: checkmark 0.5s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .checkmark i {
+            color: white;
+            font-size: 50px;
+            animation: iconFade 0.5s ease-in-out;
+        }
+
+        @keyframes iconFade {
+            from { opacity: 0; transform: scale(0); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            color: #2b2d42;
+            margin-bottom: 20px;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #2b2d42, #4a4e69);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        p {
+            color: #2b2d42;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .details {
+            background: rgba(43, 45, 66, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .details p {
+            margin: 10px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .details i {
+            color: #4a4e69;
+            width: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-button {
+            background: linear-gradient(45deg, #2b2d42, #4a4e69);
+            color: white;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #4a4e69, #2b2d42);
+        }
+
+        .dashboard-button {
+            background: white;
+            color: #2b2d42;
+            border: 2px solid #4a4e69;
+        }
+
+        .dashboard-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(74, 78, 105, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .thankyou-container {
+                padding: 30px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thankyou-container">
+        <div class="checkmark">
+            <i class="fas fa-check"></i>
+        </div>
+        <h1>Request Submitted Successfully!</h1>
+        <p>Thank you for submitting your request. The hostel owner will review your application and contact you shortly.</p>
+        
+        <div class="details">
+            <p><i class="fas fa-clock"></i> Expected Response Time: Within 24 hours</p>
+            <p><i class="fas fa-envelope"></i> You will receive updates via email</p>
+            <p><i class="fas fa-phone"></i> The owner may contact you for further details</p>
+        </div>
+
+        <div class="button-group">
+            <button class="home-button" onclick="window.location.href='role.html'">
+                <i class="fas fa-home"></i> Back to Home
+            </button>
+            <button class="dashboard-button" onclick="window.location.href='new.html'">
+                <i class="fas fa-th-large"></i> View More Hostels
+            </button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hostel-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hostel-header h1 {
+            color: #2b2d42;
+            margin-bottom: 10px;
+        }
+
+        .hostel-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .details-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .details-section h2 {
+            color: #4a4e69;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .details-section p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .details-section p i {
+            margin-right: 8px;
+            color: #4a4e69;
+            width: 16px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .amenities-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .amenities-list li {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4a4e69;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background: #2b2d42;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hostel-header">
+            <h1 id="hostelName"></h1>
+        </div>
+        <img id="hostelImage" src="" alt="Hostel Image" class="hostel-image">
+        <div class="details-section">
+            <h2><i class="fas fa-map-marker-alt"></i> Address</h2>
+            <p id="hostelAddress"></p>
+        </div>
+        <div class="details-section">
+            <h2><i class="fas fa-info-circle"></i> Details</h2>
+            <p><i class="fas fa-bed"></i> Bedrooms: <span id="hostelBedrooms"></span> | AC/Non-AC: <span id="hostelAC"></span></p>
+            <p><i class="fas fa-venus-mars"></i> Gender: <span id="hostelGender"></span></p>
+            <p><i class="fas fa-money-bill-wave"></i> Price: <span id="hostelPrice"></span>/month</p>
+            <p><i class="fas fa-coins"></i> Deposit: <span id="hostelDeposit"></span></p>
+            <p><i class="fas fa-phone"></i> Contact: <span id="hostelContact"></span></p>
+        </div>
+        <div class="details-section">
+            <h2><i class="fas fa-check-double"></i> Amenities</h2>
+            <ul id="hostelAmenities" class="amenities-list">
+                </ul>
+        </div>
+        <button id="sendRequestBtn" class="back-button" style="background-color: #5cb85c;"><i class="fas fa-paper-plane"></i> Send Request</button>
+        <a href="new.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Listings</a>
+    </div>
+
+    <script>
+        async function fetchHostelDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hostelNameFromURL = urlParams.get('name');
+
+            if (!hostelNameFromURL) {
+                document.getElementById('hostelName').innerText = 'Hostel Details Not Found';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5001/api/hostels');
+                const hostels = await response.json();
+                const selectedHostel = hostels.find(hostel => hostel.Name === hostelNameFromURL);
+
+                if (selectedHostel) {
+                    document.getElementById('hostelName').innerText = selectedHostel.Name || 'Unnamed Hostel';
+                    document.getElementById('hostelAddress').innerText = selectedHostel.address || 'No address provided';
+                    document.getElementById('hostelBedrooms').innerText = selectedHostel.bedrooms || 'N/A';
+                    document.getElementById('hostelAC').innerText = selectedHostel.AC_NON_AC || 'N/A';
+                    document.getElementById('hostelGender').innerText = selectedHostel.Gender || 'Any';
+                    document.getElementById('hostelPrice').innerText = selectedHostel.price ? `₹${selectedHostel.price}` : 'Not Listed';
+                    document.getElementById('hostelDeposit').innerText = selectedHostel.deposit ? `₹${selectedHostel.deposit}` : 'Not Listed';
+                    document.getElementById('hostelContact').innerText = 
+                                        typeof selectedHostel.contact === 'object' ? 
+                                        Object.values(selectedHostel.contact).join(', ') : 
+                                        selectedHostel.contact || 'Not Available';
+
+
+                    const hash = [...selectedHostel.Name].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    const imgNumber = (hash % 50) + 1;
+                    document.getElementById('hostelImage').src = `/images/img${imgNumber}.png`;
+                    document.getElementById('hostelImage').alt = selectedHostel.Name || 'Hostel Image';
+
+                    const amenitiesList = document.getElementById('hostelAmenities');
+                    amenitiesList.innerHTML = '';
+                    const amenities = {
+                        wifi: 'Wifi',
+                        furnished: 'Furnished',
+                        Parking: 'Parking',
+                        fridge: 'Fridge',
+                        washing_machine: 'Washing Machine',
+                        AC_NON_AC: selectedHostel.AC_NON_AC === 'AC' ? 'AC' : (selectedHostel.AC_NON_AC === 'NON-AC' ? 'Non-AC' : null)
+                    };
+
+                    for (const key in amenities) {
+                        if (selectedHostel[key] === true || amenities[key] === selectedHostel.AC_NON_AC) {
+                            const li = document.createElement('li');
+                            li.textContent = amenities[key];
+                            amenitiesList.appendChild(li);
+                        }
+                    }
+                } else {
+                    document.getElementById('hostelName').innerText = 'Hostel Details Not Found';
+                }
+
+            } catch (error) {
+                console.error('Error fetching hostel details:', error);
+                document.getElementById('hostelName').innerText = 'Error Loading Details';
+            }
+        }
+        document.getElementById('sendRequestBtn').addEventListener('click', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hostelName = urlParams.get('name');
+            if (hostelName) {
+                window.location.href = `request.html?name=${encodeURIComponent(hostelName)}`;
+            } else {
+                alert('Hostel name not found. Cannot send request.');
+            }
+        });
+
+        fetchHostelDetails();
+    </script>
+</body>
+</html>

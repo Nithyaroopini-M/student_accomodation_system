@@ -1,0 +1,1152 @@
+hi
+
+Hey there! What can I help you with today?
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+
+        body {
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+
+                            url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            margin: 0;
+
+            padding: 20px;
+
+            min-height: 100vh;
+
+        }
+
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+
+        }
+        .header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack items vertically by default */
+    gap: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header h1 {
+    margin: 0;
+    color: #2b2d42;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.header h1 i {
+    color: #4a4e69;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px; /* Reduced margin below search */
+}
+
+.search-container input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: #4a4e69;
+    box-shadow: 0 0 0 2px rgba(74, 78, 105, 0.2);
+}
+
+.search-container button {
+    padding: 12px 20px;
+    background: #4a4e69;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-container button:hover {
+    background: #2b2d42;
+    transform: translateY(-2px);
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Reduced gap for tighter spacing */
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 10px; /* Reduced margin below filter */
+}
+
+.filter-container label {
+    color: #2b2d42;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.filter-container select,
+.filter-container input[type="number"] {
+    padding: 8px; /* Slightly smaller padding */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #4a4e69;
+    cursor: pointer;
+    margin-right: 10px; /* Reduced right margin */
+    flex-grow: 0;
+}
+
+.sort-button {
+    padding: 8px 12px; /* Slightly smaller padding */
+    background: #f0ad4e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.sort-button:hover {
+    background-color: #d9534f;
+    transform: translateY(-2px);
+}
+
+.amenities-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start; /* Align to the start for better flow */
+    width: 100%;
+}
+
+.amenities-filter label {
+    color: #2b2d42;
+    font-size: 16px;
+    margin-right: 15px; /* Add some spacing between checkboxes */
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .filter-container, .amenities-filter {
+        width: 100%;
+        justify-content: flex-start; /* Maintain left alignment on smaller screens */
+    }
+
+    .filter-container label,
+    .filter-container select,
+    .filter-container input[type="number"],
+    .sort-button {
+        margin-right: 5px; /* Reduce right margin on smaller screens */
+        margin-bottom: 5px; /* Add some bottom margin for stacking */
+    }
+
+    .amenities-filter label {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+
+    .distance-sort-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+        .amenities-filter {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            width: 100%;
+
+        }
+
+
+        .amenities-filter label {
+
+            color: #2b2d42;
+
+            font-size: 16px;
+
+        }
+
+
+        .hostel-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+            gap: 20px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .hostel-card {
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+            transition: all 0.3s ease;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+        }
+
+        .hostel-card:hover {
+
+                transform: translateY(-5px);
+
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+                transition: all 0.3s ease;
+
+                cursor: pointer;
+
+            }
+
+
+        .hostel-image {
+
+            width: 100%;
+
+            height: 200px;
+
+            object-fit: cover;
+
+        }
+
+
+        .hostel-info {
+
+            padding: 20px;
+
+        }
+
+
+        .hostel-info h2 {
+
+            margin: 0 0 10px 0;
+
+            color: #2b2d42;
+
+            font-size: 20px;
+
+        }
+
+
+        .hostel-info p {
+
+            margin: 5px 0;
+
+            color: #666;
+
+            font-size: 14px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+
+        .hostel-info i {
+
+            color: #4a4e69;
+
+            width: 16px;
+
+        }
+
+
+        .price {
+
+            color: #4a4e69;
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+            margin-top: 10px;
+
+        }
+
+
+        .view-details {
+
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            background: #4a4e69;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            margin-top: 15px;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+        .view-details:hover {
+
+            background: #2b2d42;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .no-results {
+
+            text-align: center;
+
+            padding: 40px;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 15px;
+
+            margin-top: 20px;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .no-results i {
+
+            font-size: 48px;
+
+            color: #4a4e69;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .no-results h2 {
+
+            color: #2b2d42;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .no-results p {
+
+            color: #666;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .distance-sort-container {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+
+            margin-top: 10px; /* Add some space above the search bar */
+
+        }
+
+
+        .distance-sort-container input[type="text"] {
+
+            padding: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+        }
+
+
+        .distance-sort-container button {
+
+            padding: 10px 15px;
+
+            background: #5cb85c; /* Green color for distance sort */
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+
+        .distance-sort-container button:hover {
+
+            background-color: #4cae4c;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .header {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+
+            .search-container {
+
+                width: 100%;
+
+                max-width: none;
+
+                margin: 0;
+
+            }
+
+
+            .hostel-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .filter-container, .amenities-filter {
+
+                width: 100%;
+
+                justify-content: space-around;
+
+            }
+
+
+            .filter-container {
+
+                display: flex;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+
+                align-items: center; /* Vertically align items in the container */
+
+                justify-content: flex-start; /* Align items to the start, allowing sort button to follow */
+
+                width: 100%;
+
+                margin-bottom: 15px; /* Added margin for spacing below the filter/sort area */
+
+            }
+
+
+            .filter-container label {
+
+                color: #2b2d42;
+
+                font-weight: bold;
+
+                font-size: 16px;
+
+                margin-right: 5px;
+
+            }
+
+
+            .filter-container select {
+
+                padding: 10px;
+
+                border: 1px solid #ddd;
+
+                border-radius: 8px;
+
+                font-size: 16px;
+
+                color: #4a4e69;
+
+                cursor: pointer;
+
+                margin-right: 15px; /* Add some space between the dropdown and the sort button */
+
+            }
+
+
+            .sort-button {
+
+                padding: 10px 15px;
+
+                background: #f0ad4e;
+
+                color: white;
+
+                border: none;
+
+                border-radius: 8px;
+
+                cursor: pointer;
+
+                font-size: 16px;
+
+                transition: background-color 0.3s ease;
+
+            }
+
+
+            .sort-button:hover {
+
+                background-color: #d9534f;
+
+                transform: translateY(-2px);
+
+            }
+
+
+            .distance-sort-container {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="filter-container">
+                <label for="genderFilter">Gender:</label>
+                <select id="genderFilter" onchange="displayHostels()">
+                    <option value="">All</option>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+                <label for="minPrice">Min Price:</label>
+                <input type="number" id="minPrice" placeholder="Min" oninput="displayHostels()">
+                <label for="maxPrice">Max Price:</label>
+                <input type="number" id="maxPrice" placeholder="Max" oninput="displayHostels()">
+                <button class="sort-button" onclick="sortByPrice()">Sort by Price</button>
+                <button class="sort-button" onclick="toggleDistanceSort()">Find hostels near to your University!</button>
+            </div>
+
+            <h1><i class="fas fa-home"></i> Find Your Perfect Hostel</h1>
+
+            <div class="search-container">
+
+                <input type="text" id="searchInput" placeholder="Search by location or hostel name..." oninput="displayHostels()">
+
+                <button onclick="searchHostels()">
+
+                    <i class="fas fa-search"></i> Search
+
+                </button>
+
+            </div>
+
+            <div class="filter-container">
+
+                <label for="genderFilter">Gender:</label>
+
+                <select id="genderFilter" onchange="displayHostels()">
+
+                    <option value="">All</option>
+
+                    <option value="MALE">Male</option>
+
+                    <option value="FEMALE">Female</option>
+
+                </select>
+
+                <button class="sort-button" onclick="sortByPrice()">Sort by Price</button>
+
+                <button class="sort-button" onclick="toggleDistanceSort()">Find hostels near to your University!</button>
+
+            </div>
+
+            <div id="distanceSortOptions" class="filter-container distance-sort-container" style="display: none;">
+
+                <input type="text" id="collegeSearchInput" placeholder="Enter College Name">
+
+                <button onclick="sortByDistance()">Sort by Distance</button>
+
+            </div>
+
+            <div class="filter-container amenities-filter">
+
+                <label>Amenities:</label>
+
+                <label><input type="checkbox" id="wifiFilter" onchange="displayHostels()"> Wifi</label>
+
+                <label><input type="checkbox" id="furnishedFilter" onchange="displayHostels()"> Furnished</label>
+
+                <label><input type="checkbox" id="parkingFilter" onchange="displayHostels()"> Parking</label>
+
+                 <label><input type="checkbox" id="fridgeFilter" onchange="displayHostels()"> Fridge</label>
+
+                <label><input type="checkbox" id="washingMachineFilter" onchange="displayHostels()"> Washing Machine</label>
+
+                <label><input type="checkbox" id="acFilter" onchange="displayHostels()" value="AC"> AC</label>
+
+                <label><input type="checkbox" id="nonAcFilter" onchange="displayHostels()" value="NON-AC"> Non-AC</label>
+
+            </div>
+
+        </div>
+
+
+        <div id="hostelList" class="hostel-grid">
+
+            </div>
+
+
+        <div id="noResults" class="no-results" style="display: none;">
+
+            <i class="fas fa-search"></i>
+
+            <h2>No Hostels Found</h2>
+
+            <p>Try adjusting your search criteria or check back later for new listings.</p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let allHostels = [];
+
+        let isPriceSorted = false;
+
+        let originalHostelOrder = [];
+
+        let collegeDetails = {}; // To store college data
+
+        let isDistanceSortVisible = false;
+
+
+        async function fetchCollegeDetails() {
+
+            try {
+
+                const response = await fetch('college_details.json');
+
+                collegeDetails = await response.json();
+
+            } catch (error) {
+
+                console.error('Error fetching college details:', error);
+
+            }
+
+        }
+
+
+        function toggleDistanceSort() {
+
+            isDistanceSortVisible = !isDistanceSortVisible;
+
+            const distanceSortOptions = document.getElementById('distanceSortOptions');
+
+            distanceSortOptions.style.display = isDistanceSortVisible ? 'flex' : 'none';
+
+        }
+
+
+        // Function to calculate distance between two coordinates (Haversine formula)
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+
+            const R = 6371; // Radius of the Earth in km
+
+            const dLat = deg2rad(lat2 - lat1);
+
+            const dLon = deg2rad(lon2 - lon1);
+
+            const a =
+
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            const distance = R * c; // Distance in km
+
+            return distance;
+
+        }
+
+
+        function deg2rad(deg) {
+
+            return deg * (Math.PI / 180);
+
+        }
+
+
+        async function sortByDistance() {
+
+            const collegeNameInput = document.getElementById('collegeSearchInput').value.trim().toLowerCase(); // Trim and lowercase the input
+
+            let collegeCoordinates = null;
+
+            console.log("College Input:", collegeNameInput);
+
+
+            for (const collegeName in collegeDetails) {
+
+                if (collegeName.toLowerCase().trim() === collegeNameInput) { // Lowercase and trim the JSON keys for comparison
+
+                    collegeCoordinates = collegeDetails[collegeName];
+
+                    break;
+
+                }
+
+            }
+
+            console.log("College Coordinates Found:", collegeCoordinates);
+
+            if (!collegeCoordinates) {
+
+                alert('College name not found. Please enter a valid college name.');
+
+                return;
+
+            }
+
+
+            const collegeLat = collegeCoordinates[0];
+
+            const collegeLon = collegeCoordinates[1];
+
+
+            const filteredHostels = allHostels.filter(hostel => {
+
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+                const genderFilter = document.getElementById('genderFilter').value;
+
+                const wifiFilter = document.getElementById('wifiFilter').checked;
+
+                const furnishedFilter = document.getElementById('furnishedFilter').checked;
+
+                const parkingFilter = document.getElementById('parkingFilter').checked;
+
+                const fridgeFilter = document.getElementById('fridgeFilter').checked;
+
+                const washingMachineFilter = document.getElementById('washingMachineFilter').checked;
+
+                const acFilter = document.getElementById('acFilter').checked;
+
+                const nonAcFilter = document.getElementById('nonAcFilter').checked;
+
+
+                const name = (hostel.Name || '').toLowerCase();
+
+                const address = (hostel.address || '').toLowerCase();
+
+                const genderMatch = !genderFilter || (hostel.Gender && hostel.Gender.toLowerCase() === genderFilter.toLowerCase());
+
+                const wifiMatch = !wifiFilter || hostel.wifi === true;
+
+                const furnishedMatch = !furnishedFilter || hostel.furnished === true;
+
+                const parkingMatch = !parkingFilter || hostel.Parking === true;
+
+                const fridgeMatch = !fridgeFilter || hostel.fridge === true;
+
+                const washingMachineMatch = !washingMachineFilter || hostel.washing_machine === true;
+
+                const acMatch = (!acFilter && !nonAcFilter) || (acFilter && hostel.AC_NON_AC === 'AC') || (nonAcFilter && hostel.AC_NON_AC === 'NON-AC');
+
+                const searchMatch = name.includes(searchTerm) || address.includes(searchTerm);
+
+
+                return genderMatch && wifiMatch && furnishedMatch && parkingMatch && fridgeMatch && washingMachineMatch && acMatch && searchMatch &&
+
+                       typeof hostel.latitude === 'number' && typeof hostel.longitude === 'number'; // Ensure hostel has coordinates
+
+            });
+
+
+            const hostelsWithDistance = filteredHostels.map(hostel => ({
+
+                ...hostel,
+
+                distance: calculateDistance(hostel.latitude, hostel.longitude, collegeLat, collegeLon)
+
+            }));
+
+
+            hostelsWithDistance.sort((a, b) => a.distance - b.distance);
+
+
+            renderHostels(hostelsWithDistance);
+
+        }
+
+
+        async function fetchHostels() {
+
+            try {
+
+                const response = await fetch('http://127.0.0.1:5001/api/hostels');
+
+                allHostels = await response.json();
+
+                originalHostelOrder = [...allHostels];
+
+                displayHostels();
+
+                await fetchCollegeDetails(); // Fetch college details after hostels
+
+            } catch (error) {
+
+                console.error('Error fetching hostels:', error);
+
+            }
+
+        }
+
+        function displayHostels() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const genderFilter = document.getElementById('genderFilter').value;
+    const wifiFilter = document.getElementById('wifiFilter').checked;
+    const furnishedFilter = document.getElementById('furnishedFilter').checked;
+    const parkingFilter = document.getElementById('parkingFilter').checked;
+    const fridgeFilter = document.getElementById('fridgeFilter').checked;
+    const washingMachineFilter = document.getElementById('washingMachineFilter').checked;
+    const acFilter = document.getElementById('acFilter').checked;
+    const nonAcFilter = document.getElementById('nonAcFilter').checked;
+    const minPrice = document.getElementById('minPrice').value;
+    const maxPrice = document.getElementById('maxPrice').value;
+
+    const hostelList = document.getElementById('hostelList');
+    const noResults = document.getElementById('noResults');
+    hostelList.innerHTML = '';
+
+    const filteredHostels = allHostels.filter(hostel => {
+        const name = (hostel.Name || '').toLowerCase();
+        const address = (hostel.address || '').toLowerCase();
+        const genderMatch = !genderFilter || (hostel.Gender && hostel.Gender.toLowerCase() === genderFilter.toLowerCase());
+        const wifiMatch = !wifiFilter || hostel.wifi === true;
+        const furnishedMatch = !furnishedFilter || hostel.furnished === true;
+        const parkingMatch = !parkingFilter || hostel.Parking === true;
+        const fridgeMatch = !fridgeFilter || hostel.fridge === true;
+        const washingMachineMatch = !washingMachineFilter || hostel.washing_machine === true;
+        const acMatch = (!acFilter && !nonAcFilter) || (acFilter && hostel.AC_NON_AC === 'AC') || (nonAcFilter && hostel.AC_NON_AC === 'NON-AC');
+        const searchMatch = name.includes(searchTerm) || address.includes(searchTerm);
+
+        // Price range filtering
+        const price = parseFloat(hostel.price);
+        const minPriceMatch = !minPrice || (price >= parseFloat(minPrice));
+        const maxPriceMatch = !maxPrice || (price <= parseFloat(maxPrice));
+
+        return genderMatch && wifiMatch && furnishedMatch && parkingMatch && fridgeMatch && washingMachineMatch && acMatch && searchMatch && minPriceMatch && maxPriceMatch;
+    });
+
+    if (filteredHostels.length === 0) {
+        noResults.style.display = 'block';
+        return;
+    }
+
+    noResults.style.display = 'none';
+    renderHostels(filteredHostels);
+}
+
+        function renderHostels(hostels) {
+
+            const hostelList = document.getElementById('hostelList');
+
+            hostelList.innerHTML = '';
+
+
+            hostels.forEach(hostel => {
+
+                const card = document.createElement('div');
+
+                card.className = 'hostel-card';
+
+
+                const hash = [...hostel.Name].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+                const imgNumber = (hash % 50) + 1;
+
+
+                const name = hostel.Name || 'Unnamed Hostel';
+
+                const address = hostel.address || 'No address provided';
+
+                const price = hostel.price ? `₹${hostel.price}/month` : 'Price not listed';
+
+                const bedrooms = hostel.bedrooms || 'N/A';
+
+                const ac = hostel.AC_NON_AC || 'N/A';
+
+                const wifi = hostel.wifi ? 'Yes' : 'No';
+
+                const furnished = hostel.furnished ? 'Yes' : 'No';
+
+                const parking = hostel.Parking ? 'Yes' : 'No';
+
+                const fridge = hostel.fridge ? 'Yes' : 'No';
+
+                const washingMachine = hostel.washing_machine ? 'Yes' : 'No';
+
+                const distanceText = hostel.distance ? ` | Distance: ${hostel.distance.toFixed(2)} km` : ''; // Display distance if calculated
+
+
+                card.innerHTML = `
+
+                    <img src="/images/img${imgNumber}.png" alt="${name}" class="hostel-image">
+
+                    <div class="hostel-info">
+
+                        <h2>${name}</h2>
+
+                        <p><i class="fas fa-map-marker-alt"></i> ${address}${distanceText}</p>
+
+                        <p><i class="fas fa-bed"></i> Bedrooms: ${bedrooms} | ${ac}</p>
+
+                        <p><i class="fas fa-wifi"></i> Wifi: ${wifi} | Furnished: ${furnished}</p>
+
+                        <p><i class="fas fa-car"></i> Parking: ${parking} | Fridge: ${fridge}</p>
+
+                        <p><i class="fas fa-tshirt"></i> Washing Machine: ${washingMachine}</p>
+
+                        <div class="price">${price}</div>
+
+                        <a href="hostel_details.html?name=${encodeURIComponent(name)}" class="view-details">
+
+                            <i class="fas fa-info-circle"></i> View Details
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                hostelList.appendChild(card);
+
+            });
+
+        }
+
+
+        function searchHostels() {
+
+            displayHostels();
+
+        }
+
+
+        function sortByPrice() {
+
+            isPriceSorted = !isPriceSorted;
+
+            const filteredHostels = allHostels.filter(hostel => {
+
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+                const genderFilter = document.getElementById('genderFilter').value;
+
+                const wifiFilter = document.getElementById('wifiFilter').checked;
+
+                const furnishedFilter = document.getElementById('furnishedFilter').checked;
+
+                const parkingFilter = document.getElementById('parkingFilter').checked;
+
+                const fridgeFilter = document.getElementById('fridgeFilter').checked;
+
+                const washingMachineFilter = document.getElementById('washingMachineFilter').checked;
+
+                const acFilter = document.getElementById('acFilter').checked;
+
+                const nonAcFilter = document.getElementById('nonAcFilter').checked;
+
+
+                const name = (hostel.Name || '').toLowerCase();
+
+                const address = (hostel.address || '').toLowerCase();
+
+                const genderMatch = !genderFilter || (hostel.Gender && hostel.Gender.toLowerCase() === genderFilter.toLowerCase());
+
+                const wifiMatch = !wifiFilter || hostel.wifi === true;
+
+                const furnishedMatch = !furnishedFilter || hostel.furnished === true;
+
+                const parkingMatch = !parkingFilter || hostel.Parking === true;
+
+                const fridgeMatch = !fridgeFilter || hostel.fridge === true;
+
+                const washingMachineMatch = !washingMachineFilter || hostel.washing_machine === true;
+
+                const acMatch = (!acFilter && !nonAcFilter) || (acFilter && hostel.AC_NON_AC === 'AC') || (nonAcFilter && hostel.AC_NON_AC === 'NON-AC');
+
+                const searchMatch = name.includes(searchTerm) || address.includes(searchTerm);
+
+
+                return genderMatch && wifiMatch && furnishedMatch && parkingMatch && fridgeMatch && washingMachineMatch && acMatch && searchMatch;
+
+            });
+
+
+            let hostelsToSort = [...filteredHostels];
+
+
+            if (isPriceSorted) {
+
+                hostelsToSort.sort((a, b) => {
+
+                    const priceA = parseFloat(a.price);
+
+                    const priceB = parseFloat(b.price);
+
+                    if (isNaN(priceA) && isNaN(priceB)) return 0;
+
+                    if (isNaN(priceA)) return 1;
+
+                    if (isNaN(priceB)) return -1;
+
+                    return priceA - priceB;
+
+                });
+
+            } else {
+
+                const currentFilteredNames = filteredHostels.map(hostel => hostel.Name);
+
+                hostelsToSort = originalHostelOrder.filter(hostel => currentFilteredNames.includes(hostel.Name));
+
+            }
+
+
+            renderHostels(hostelsToSort);
+
+        }
+
+
+        document.getElementById('searchInput').addEventListener('input', displayHostels);
+
+
+        fetchHostels();
+
+    </script>
+
+</body>
+
+</html> 
+

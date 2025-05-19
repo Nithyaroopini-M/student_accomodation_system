@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HostelHub - Student Accommodation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: #2b2d42;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.6); /* Subtle transparent background instead of white shade */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(5px); /* Slight blur for a modern effect */
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2b2d42;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+            color: white;
+            background: #2b2d42;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to HostelHub</h1>
+        <p>Find your best accommodation tailored to your preferences</p>
+        <p>Explore top-rated hostels across your city</p>
+        <p>Compare amenities, pricing, and availability with ease</p>
+        <p>Book your stay with just a few clicks</p>
+        <p>Your comfort and convenience come first</p>
+        <a href="login_signup.html" class="btn">→ Login & Explore Hostels</a>
+    </div>
+</body>
+</html>
